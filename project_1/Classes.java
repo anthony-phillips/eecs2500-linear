@@ -1,13 +1,13 @@
 public class Classes {
     public static void main(String[] args) {
-        Die[] dice = new Die[6];
+        Die[] dice = new Die[20];
 
-        for (int i = 0; i < 6; i++) {
-            dice[i] = new Die(i + 1);
+        for (int i = 0; i < dice.length; i++) {
+            dice[i] = new Die();
+            dice[i].roll();
         }
 
         for (Die die : dice) {
-
             die.printFace();
         }
     }
