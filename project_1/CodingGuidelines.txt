@@ -1,0 +1,45 @@
+This is the coding guidelines assignment.
+Anthony Phillips
+09/14/2017
+
+Consider the following code:
+
+char c1;
+c1 = GetChoice();
+switch (c1)
+{ 
+     case 'a':
+     case 'A':
+           OptionA();
+           break;
+     case 'i':
+     case 'I':
+           OptionI();
+           break;
+     case 'w':
+     case 'W':
+           ProcessOptionW();
+           break;
+     default:
+           println("Not a valid choice\n)";
+}
+
+The problems with this code is as follows:
+1) The cases in the switch statement are not in table format.
+2) The switch statements having multiple case labels can have those labels consolidated on one line.
+3) The method "OptionA()" and "OptionI()" should be a verb phrase.
+4) Assuming "println()" is not a user-defined method, the default case should use "System.out.println()".
+5) The switch statement should be separated from the variable declaration with a blank line.
+
+The following code is the re-written version of the above code, taking into consideration the problems just addressed:
+
+char c1;
+c1 = GetChoice();
+
+switch (c1)
+{ 
+     case 'a': case 'A':   ProcessOptionA();   break;
+     case 'i': case 'I':   ProcessOptionI();   break;
+     case 'w': case 'W':   ProcessOptionW();   break;
+     default:              System.out.println("Not a valid choice\n)";
+}

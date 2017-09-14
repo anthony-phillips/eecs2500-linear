@@ -1,3 +1,7 @@
+// This program has a user guess a randomly generated secret number.
+// Anthony Phillips
+// 09/14/2017
+
 import java.util.Scanner;
 
 class SecretNumber {
@@ -25,9 +29,11 @@ class SecretNumber {
             break;
          }
 
-         if (guess < 1 || guess > 100)
+         if (guess < 1 || guess > 100){
             System.out.println("The secret number is within the range of 1-100."
                + " Try again.");
+            continue;
+         }
 
          if (guess != secret) {
             boolean isLow = secret - guess > 0 ? true : false;
@@ -35,11 +41,11 @@ class SecretNumber {
             String intensifier;
 
             if (difference > 30)
-            intensifier = "way too";
+               intensifier = "way too";
             else if (difference > 10)
-            intensifier = "too";
+               intensifier = "too";
             else
-            intensifier = "a little";
+               intensifier = "a little";
 
             System.out.println("Your guess was " + intensifier
                + (isLow ? " low." : " high."));
@@ -51,5 +57,4 @@ class SecretNumber {
          }
       }
    }
-
 }
