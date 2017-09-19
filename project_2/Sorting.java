@@ -45,8 +45,8 @@ public class Sorting{
          for (int j = i+1 ; j > 0; j--) {
             if (intArray[j] < intArray[j-1]) {
                int intermediate = intArray[j];
-               intArray[j-1] = intArray[j];
-               intArray[j] = intermediate;
+               intArray[j] = intArray[j-1];
+               intArray[j-1] = intermediate;
             } else 
                break;
          }
