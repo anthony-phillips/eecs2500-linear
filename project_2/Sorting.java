@@ -1,20 +1,16 @@
 import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.StandardOpenOption;
 import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.ArrayList;
+import java.util.Timer;
 
 public class Sorting{
    
    public static void main(String[] args) {
-      if (args.length < 2) {
+      if (args.length < 1) {
          printUsage();
          System.exit(1);
       }
 
       File inputFile   = new File(args[0]);
-      File outputFile  = new File(args[1]);
       String delimiter = "\n";
 
       if (args.length > 2) {
@@ -41,8 +37,11 @@ public class Sorting{
          System.exit(3);
       }
       
+      int comparisons = 0;
+      long startTime = System.nanoTime();
       for (int i = 0; i < intArray.length - 1 ; i++) {
          for (int j = i+1 ; j > 0; j--) {
+            comparisons++;
             if (intArray[j] < intArray[j-1]) {
                int intermediate = intArray[j];
                intArray[j] = intArray[j-1];
@@ -51,22 +50,20 @@ public class Sorting{
                break;
          }
       }
+      long endTime = System.nanoTime();
 
-      ArrayList<String> outputStrings = new ArrayList<String>();
-      for (Integer integer : intArray)
-         outputStrings.add(Integer.toString(integer));
+      long duration = endTime - startTime;
 
-      try {
-         Files.write(outputFile.toPath(), outputStrings, 
-                     StandardCharsets.UTF_8, StandardOpenOption.CREATE_NEW);
-      } catch (Exception e) {
-         System.out.println("Failed to create file or write to file.");
-         printUsage();
+      System.out.println("Duration: " + duration + " ns");
+      System.out.println("Comparisons: " + comparisons);
+
+      for (int i = 0; i < 30; i++) {
+            System.out.println((i+1) + ": " + intArray[i]);
       }
    }
 
    private static void printUsage() {
       System.out.print("Usage: ");
-      System.out.println("java Sorting input_file output_file [delimiter]");
+      System.out.println("java Sorting input_file [delimiter]");
    }
 }
