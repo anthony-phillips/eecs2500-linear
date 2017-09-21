@@ -1,3 +1,7 @@
+// This program sorts an input file of integers and outputs relevant metrics.
+// Anthony Phillips
+// 09/21/2017
+
 import java.io.File;
 import java.nio.file.Files;
 
@@ -38,6 +42,7 @@ public class Sorting{
       
       int comparisons = 0;
       long startTime = System.nanoTime();
+
       for (int i = 0; i < intArray.length - 1 ; i++) {
          for (int j = i+1 ; j > 0; j--) {
             comparisons++;
@@ -49,11 +54,10 @@ public class Sorting{
                break;
          }
       }
+
       long endTime = System.nanoTime();
 
-      long duration = endTime - startTime;
-
-      System.out.println("Duration: " + duration + " ns");
+      System.out.println("Duration: " + (endTime - startTime) + " ns");
       System.out.println("Comparisons: " + comparisons);
 
       for (int i = 0; i < 30; i++) {
