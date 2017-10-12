@@ -1,0 +1,6 @@
+3
+George,Henry,Charles
+Sarah,Margaret,Emily
+Sarah,Margaret,Emily
+Margaret,Sarah,Emily
+Emily,Sarah,Margaret
