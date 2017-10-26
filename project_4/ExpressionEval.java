@@ -120,7 +120,7 @@ class ExpressionEval {
 
    private static class MyStack<E> {
 
-      public CustomStack() {
+      public MyStack() {
          this.array = (E[]) new Object[0];
       }
 
