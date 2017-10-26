@@ -1,0 +1,13 @@
+5
+Brian,George,John,Robert,Stephen
+Anne,Joyce,Nancy,Patricia,Susan
+Brian:Patricia,Susan,Joyce,Anne,Nancy
+George:Nancy,Joyce,Patricia,Susan,Anne
+John:Susan,Joyce,Nancy,Patricia,Anne
+Robert:Nancy,Anne,Joyce,Susan,Patricia
+Stephen:Joyce,Anne,Susan,Nancy,Patricia
+Anne:George,Stephen,John,Brian,Robert
+Joyce:George,John,Stephen,Robert,Brian
+Nancy:John,Brian,Stephen,Robert,George
+Patricia:George,Brian,Robert,Stephen,John
+Susan:Brian,George,Stephen,John,Robert

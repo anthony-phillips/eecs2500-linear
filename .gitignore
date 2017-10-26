@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 *.class
 
+=======
+>>>>>>> f29a641a99b6bb52b6c4595c80fe405401052e10
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -15,4 +18,11 @@ hs_err_pid*
 *.class
 *.png
 *.jpg
+<<<<<<< HEAD
 *.jpeg
+=======
+*.jpeg
+
+# Editor Files
+.vscode
+>>>>>>> f29a641a99b6bb52b6c4595c80fe405401052e10
