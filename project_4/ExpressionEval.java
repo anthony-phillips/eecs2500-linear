@@ -1,4 +1,3 @@
-import java.util.Vector;
 import java.util.EmptyStackException;
 import java.util.Scanner;
 
