@@ -105,7 +105,8 @@ class IntervalScheduling {
 
       Interval interval = intervals.get(j);
 
-      if (interval.weight + (interval.compatible == null ? 0 : memOptimal[interval.compatible.number]) > 
+      if (interval.weight + (interval.compatible == null ? 
+         0 : memOptimal[interval.compatible.number]) > 
          (j == 0 ? 0 : memOptimal[j-1])) {
          System.out.print(interval.number+1 + " ");
          if (interval.compatible == null)
