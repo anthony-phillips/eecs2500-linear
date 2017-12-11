@@ -1,3 +1,5 @@
+// Class that implements a hashtable, resolving 
+// collisions through linear probing.
 public class HashTable {
    private static final int DEFAULT_SIZE = 1000;
    private static final int CHUNK_SIZE = 4;
@@ -15,17 +17,26 @@ public class HashTable {
       dict = new String[size];
    }
 
-   public void insert(String s) throws Exception{
+   // Inserts a string, returning a bool indicating if a collision occurred
+   public boolean insert(String s) throws Exception{
+      boolean wasCollision = false;
       s = s.toUpperCase();
+
+      // If the hashtable is full, throw an exception
       if (count == size)
-         throw new array();
+         throw new Exception();
 
       int index = hashCode(s);
 
+      // If something exists at the index, a collision occurred
+      if (dict[index] != null)
+            wasCollision = true;
+
       // If there's a collision, use the next available index
       while (dict[index] != null) {
+         // Disallow duplicate entries
          if (dict[index].equals(s))
-            return;
+            return true;
 
          index++;
          if (index >= size-1)
@@ -34,6 +45,7 @@ public class HashTable {
 
       dict[index] = s;         
       count++;
+      return wasCollision;
    }
 
    public boolean contains(String s) {
