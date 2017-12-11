@@ -1,55 +1,89 @@
 public class HashTable {
-    private int size = 0;
+   private static final int DEFAULT_SIZE = 1000;
+   private static final int CHUNK_SIZE = 4;
 
-    public HashTable() {
+   private int size = 0;
+   private String[] dict;
 
-    }
+   private int count = 0;
+   public int count() { return this.count; }
 
-    public HashTable(int n) {
-        this.size = n;
-    }
+   public HashTable() { this(DEFAULT_SIZE); }
 
-    public void insert(String s) {
+   public HashTable(int n) {
+      this.size = n;
+      dict = new String[size];
+   }
 
-    }
+   public void insert(String s) throws Exception{
+      s = s.toUpperCase();
+      if (count == size)
+         throw new array();
 
-    public boolean contains(String s) {
-        return false;
-    }
+      int index = hashCode(s);
 
-    public int count() {
-        return 0;
-    }
+      // If there's a collision, use the next available index
+      while (dict[index] != null) {
+         if (dict[index].equals(s))
+            return;
 
-    // Why am I doing this
-    public int hashCode(String s) {
-        s = s.toUpperCase();
-        char[] chars = s.toCharArray();
+         index++;
+         if (index >= size-1)
+            index = 0;
+      }
 
-        int numOfChunks = s.length() / 4 + s.length() % 4 == 0 ? 0 : 1;
-        String[] chunks = new String[numOfChunks];
+      dict[index] = s;         
+      count++;
+   }
 
-        for (int i = 0; i < numOfChunks; i++) {
-            String chunk = "";
+   public boolean contains(String s) {
+      // Get the index of the string
+      s = s.toUpperCase();
+      int index = hashCode(s);
 
-            for (int j = i*4; j < Math.min(s.length(), j+4); j++)
-                chunk += chars[j];
-            
-            chunks[i] = chunk;
-        }
+      // If something exists at that index, check if it is the string we
+      // are looking for. If it is not, start linearly probing for it.
+      while (dict[index] != null) {
+         if (dict[index].equals(s))
+            return true;
 
-        int chunkSum = 0;
+         index++;
+         if (index == size)
+            index = 0;
+      }
 
-        for (int i = 0, j = numOfChunks-1; i < numOfChunks; i++, j--) {
-            int chunkVal = 0;
-            char[] chunk = chunks[i].toCharArray();
+      return false; 
+   }
 
-            for (int k = 0; k < chunks[0].length(); k++)
-                chunkVal += chunk[k]-64;
+   public int hashCode(String s) {
+      // This algorithm is case insensitive
+      s = s.toUpperCase();
 
-            chunkSum += chunkVal * Math.pow(31, j);
-        }
+      // Divide s into chunks of 4 chars
+      int cs = CHUNK_SIZE;
+      char[] chars = s.toCharArray();
+      int numOfChunks = (s.length() / CHUNK_SIZE) + (s.length() % cs == 0 ? 0 : 1);
+      String[] chunks = new String[numOfChunks];
 
-        return chunkSum % this.size;
-    }
+      for (int i = 0; i < numOfChunks; i++) {
+         String chunk = "";
+         for (int j = i*cs; j < Math.min(s.length(), (i*cs)+cs); j++)
+            chunk += chars[j];
+
+         chunks[i] = chunk;
+      }
+
+      // Calculate the hash value for s
+      int hashValue = 0;
+
+      for (int i = 0; i < numOfChunks; i++) {
+         char[] chunk = chunks[i].toCharArray();
+
+         for (int k = 0, j = 3; k < chunk.length; k++, j--)
+            hashValue += (chunk[k] - 64) * Math.pow(31, j);
+      }
+
+      // The index will be the hash value mod table size
+      return hashValue % this.size;
+   }
 }
